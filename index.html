@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cabinet+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="js/nav.js"></script>
+    <script src="js/css-effect.js"></script>
+    <script src="js/tab-switch.js"></script>
+    <script src="js/audio-player.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Register nav button and links (nav.js)
+            registerNavButton('main-nav-button', 'main-nav-list', 'hidden');
+            registerNavLinks('section:not(:first-of-type)', 'nav#main-nav a', 'active');
+
+            // Register tab group to tab system (tab-switch.js)
+            const tabDataGames = new TabData('tab-button-games', 'tab-games');
+            const tabDataApps = new TabData('tab-button-apps', 'tab-apps');
+            const tabDataArraySoftware = [tabDataGames, tabDataApps];
+            const tabGroupSoftware = new TabGroup(tabDataArraySoftware);
+            registerTabGroup(tabGroupSoftware);
+
+            // Register audio player (audio-player.js)
+            const audioTrackCorridor = new AudioTrack('audio-corridor-button', 'audio-corridor-length', 'audio/Corridor 7.mp3');
+            const audioTrackFinalSen = new AudioTrack('audio-final-sen-button', 'audio-final-sen-length', 'audio/Final Sen.mp3');
+            const audioTrackChained = new AudioTrack('audio-chained-button', 'audio-chained-length', 'audio/Chained.mp3');
+            const audioTracks = [audioTrackCorridor, audioTrackFinalSen, audioTrackChained];
+            const audioController = new AudioController('audio-player-element', 'audio-button-play', 'audio-button-fast-forward', 'audio-button-fast-backward', 'audio-progress', 'audio-progress-container', 'audio-time-current', 'audio-time-total',audioTracks);
+            registerAudioController(audioController);
+        });
+
+        // Register effects on load
+        window.addEventListener('load', () => {
+            requestAnimationFrame(() => {
+                registerEffects('.reveal', 'visible');
+            });
+        });
+    </script>
+    <title>David Žižlavský</title>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="main-nav-container">
+            <a href="#" class="title" aria-hidden="true">DŽ</a>
+            <button type="button" class="main-nav-menu-button" id="main-nav-button" aria-label="Toggle navigation menu" aria-controls="main-nav-list" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+            <div class="main-nav-menu hidden" id="main-nav-list">
+                <ul>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#software">Software</a>
+                    </li>
+                    <li>
+                        <a href="#music">Music</a>
+                    </li>
+                    <li>
+                        <a href="#experience">Experience</a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="alternative">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section id="intro">
+            <div class="background" aria-hidden="true">
+                <div class="glow1"></div>
+                <div class="glow2"></div>
+            </div>
+
+            <div class="content">
+                <p class="eyebrow">Developer · Creator · Musician</p>
+                <h1>
+                    <span class="line">David</span>
+                    <span class="line"><em>Žižlavský</em></span>
+                </h1>
+                
+                <p class="description media-small-text-justify">
+                    Full-stack web developer, software engineer, music producer, and 3D artist. I build everything from game engines to drill beats.
+                </p>
+
+                <div class="actions">
+                    <a href="#software" class="button-primary media-xsmall-w100">
+                        <span>View Work</span><span aria-hidden="true" class="select-none">↓</span>
+                    </a>
+                    <a href="#contact" class="button-secondary media-xsmall-w100">
+                        <span>Get in Touch</span>
+                    </a>
+                </div>
+            </div>
+
+            <aside class="tags media-small-display-none" aria-hidden="true">
+                <div class="tag">HTML, CSS, JS</div>
+                <div class="tag">C++</div>
+                <div class="tag">Java</div>
+                <div class="tag">C#</div>
+                <div class="tag">Unity</div>
+            </aside>
+        </section>
+        <section id="about">
+            <div class="container">
+                <header class="reveal">
+                    <div class="section-label">About me</div>
+                    <h2>A bit<br>about myself.</h2>
+                </header>
+
+                <div class="grid media-small-grid-single-column">
+                    <div class="text reveal">
+                        <p>
+                            Hey, I'm <strong>David</strong> — a developer, game-maker, and musician from the Czech Republic. I started coding because I wanted to build games, and I haven't stopped since. Today my work spans <strong>web development, game engines, desktop apps,</strong> and music production.
+                        </p>
+                        <p>
+                            When I'm not shipping code, I'm deep in FL Studio crafting <strong>drill beats</strong> with real guitar tracks I record myself — two guitars, a whole lot of sound design, and a dash of Linkin Park energy to tie it all together.
+                        </p>
+                        <p>
+                            Everything I do is connected: I write the code, model the assets in <strong>Blender</strong>, compose the soundtrack in FL Studio, and wrap it all up into a shipped product.
+                        </p>
+                        
+                        <div class="stats">
+                            <div class="stat-card">
+                                <div class="stat-num">3+</div>
+                                <div class="stat-label">Years coding</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-num">2</div>
+                                <div class="stat-label">Games shipped</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-num">2</div>
+                                <div class="stat-label">Guitars owned</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-num">∞</div>
+                                <div class="stat-label">WIPs in progress</div>
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="skills media-small-grid-column-1 reveal" aria-label="Skills">
+                        <div>
+                            <div class="skill-group-title">Web Development</div>
+                            <ul class="skill-pills">
+                                <li class="pill">HTML5</li>
+                                <li class="pill">CSS3</li>
+                                <li class="pill">JavaScript</li>
+                                <li class="pill">CodeIgniter</li>
+                                <li class="pill">PHP</li>
+                                <li class="pill">MySQL</li>
+                            </ul>
+                        </div>
+                        <div class="skill-divider"></div>
+                        <div>
+                            <div class="skill-group-title">Game &amp; Desktop Dev</div>
+                            <ul class="skill-pills">
+                                <li class="pill">C++</li>
+                                <li class="pill">OpenGL</li>
+                                <li class="pill">Vulkan</li>
+                                <li class="pill">GLSL</li>
+                                <li class="pill">Unity</li>
+                                <li class="pill">C#</li>
+                                <li class="pill">Java</li>
+                            </ul>
+                        </div>
+                        <div class="skill-divider"></div>
+                        <div>
+                            <div class="skill-group-title">Music Production</div>
+                            <ul class="skill-pills">
+                                <li class="pill">FL Studio</li>
+                                <li class="pill">Guitar</li>
+                                <li class="pill">Sound Design</li>
+                                <li class="pill">Mixing</li>
+                                <li class="pill">Mastering</li>
+                            </ul>
+                        </div>
+                        <div class="skill-divider"></div>
+                        <div>
+                            <div class="skill-group-title">Tools &amp; Misc</div>
+                            <ul class="skill-pills">
+                                <li class="pill">Git</li>
+                                <li class="pill">GitHub</li>
+                                <li class="pill">VS Code</li>
+                                <li class="pill">Visual Studio</li>
+                                <li class="pill">Blender</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+        <section id="software">
+            <div class="container">
+                <header class="reveal">
+                    <div class="section-label">Software</div>
+                    <h2>Things I've<br>built &amp; shipped.</h2>
+                </header>
+
+                <div class="tab-controls media-xsmall-w100 reveal" role="tablist" aria-label="Software categories">
+                    <button type="button" class="tab-button active" role="tab" aria-selected="true" aria-controls="tab-games" id="tab-button-games">Games</button>
+                    <button type="button" class="tab-button" role="tab" aria-selected="false" aria-controls="tab-apps" id="tab-button-apps">Applications</button>
+                </div>
+
+                <div class="tab-panel" id="tab-games" role="tabpanel" aria-labelledby="tab-button-games">
+                    <div class="retail-chain tab-row media-small-flex-wrap">
+                        <div class="showcase media-small-w100 reveal">
+                            <div class="window">
+                                <div class="window-header">
+                                    <span class="window-header-dot window-header-dot-red" aria-hidden="true"></span>
+                                    <span class="window-header-dot window-header-dot-yellow" aria-hidden="true"></span>
+                                    <span class="window-header-dot window-header-dot-green" aria-hidden="true"></span>
+                                    <span class="window-header-title">Retail Chain - screenshot</span>
+                                </div>
+                                <div class="window-content">
+                                    <img alt="Retail Chain gameplay screenshot" src="img/RetailChain.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <aside class="info media-small-w100 reveal">
+                            <div class="title-block flex-1">
+                                <h3>Retail Chain</h3>
+                                <p>
+                                    A 3D co-op simulation game with online multiplayer for two players. One player manages the factory while the other runs the shop, so communication and cooperation are key to keeping the business alive. Retail Chain was developed as my high school graduation project together with a classmate.
+                                </p>
+                            </div>
+                            <ul class="meta">
+                                <li class="meta-item">
+                                    <div class="meta-label">Engine</div>
+                                    <div class="meta-value">Unity</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Language</div>
+                                    <div class="meta-value">C#</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Genre</div>
+                                    <div class="meta-value">Simulation</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Platform</div>
+                                    <div class="meta-value">Windows</div>
+                                </li>
+                            </ul>
+                            <div class="info-buttons-container">
+                                <a class="info-button" href="https://github.com/David-Citron/Retail-Chain" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </aside>
+                    </div>
+
+                    <div class="pc-quester tab-row media-small-flex-wrap">
+                        <aside class="info media-small-w100 reveal media-small-order-2">
+                            <div class="title-block flex-1">
+                                <h3>PC Quester</h3>
+                                <p>
+                                    A virtual Windows-like desktop simulator created for the <strong>20 Second Game Jam</strong> on Itch.io. Players can freely explore the system or follow built-in quests to discover what the desktop has to offer.
+                                </p>
+                            </div>
+                            <ul class="meta">
+                                <li class="meta-item">
+                                    <div class="meta-label">Engine</div>
+                                    <div class="meta-value">Unity</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Language</div>
+                                    <div class="meta-value">C#</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Genre</div>
+                                    <div class="meta-value">Simulation</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Platform</div>
+                                    <div class="meta-value">WebGL &amp; Windows</div>
+                                </li>
+                            </ul>
+                            <div class="info-buttons-container">
+                                <a class="info-button" href="https://davidcitron.itch.io/pcquester" target="_blank" rel="noopener noreferrer">Itch.io</a>
+                            </div>
+                        </aside>
+
+                        <div class="showcase media-small-w100 reveal">
+                            <div class="window">
+                                <div class="window-header">
+                                    <span class="window-header-dot window-header-dot-red" aria-hidden="true"></span>
+                                    <span class="window-header-dot window-header-dot-yellow" aria-hidden="true"></span>
+                                    <span class="window-header-dot window-header-dot-green" aria-hidden="true"></span>
+                                    <span class="window-header-title">PC Quester - screenshot</span>
+                                </div>
+                                <div class="window-content">
+                                    <img alt="PC Quester screenshot" src="img/PcQuester.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="tab-apps" role="tabpanel" aria-labelledby="tab-button-apps">
+                    <div class="portal-euregnia tab-row media-small-flex-wrap">
+                        <div class="showcase media-small-w100 reveal">
+                            <div class="window">
+                                <div class="window-header">
+                                    <span class="window-header-dot window-header-dot-red" aria-hidden="true"></span>
+                                    <span class="window-header-dot window-header-dot-yellow" aria-hidden="true"></span>
+                                    <span class="window-header-dot window-header-dot-green" aria-hidden="true"></span>
+                                    <span class="window-header-title">Portal Euregnia - screenshot</span>
+                                </div>
+                                <div class="window-content">
+                                    <img alt="Portal Euregnia screenshot" src="img/PortalEuregnia.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <aside class="info media-small-w100 reveal media-small-order-2">
+                            <div class="title-block flex-1">
+                                <h3>Portal Euregnia</h3>
+                                <p>
+                                    At <strong>Euregnia</strong>, I work as the lead developer on a web application for data reporting and analysis. The project focuses on usability, clear data presentation, and practical tools for everyday work. It is currently in active development.
+                                </p>
+                            </div>
+                            <ul class="meta">
+                                <li class="meta-item">
+                                    <div class="meta-label">Type</div>
+                                    <div class="meta-value">Web application</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Database</div>
+                                    <div class="meta-value">MySQL</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Frontend</div>
+                                    <div class="meta-value">HTML, CSS, JS</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Backend</div>
+                                    <div class="meta-value">PHP, CodeIgniter 4</div>
+                                </li>
+                            </ul>
+                            <div class="info-buttons-container">
+                                <a class="info-button" href="https://portal.euregnia.cz" target="_blank" rel="noopener noreferrer">Portal Euregnia</a>
+                            </div>
+                        </aside>
+                    </div>
+
+                    <div class="archshare tab-row media-small-flex-wrap">
+                        <aside class="info media-small-w100 reveal media-small-order-2">
+                            <div class="title-block flex-1">
+                                <h3>ArchShare</h3>
+                                <p>
+                                    A simple social platform for sharing architecture photos and ideas. The project was developed by a team of three as part of a high school assignment. My responsibility was the backend, including the API.
+                                </p>
+                            </div>
+                            <ul class="meta">
+                                <li class="meta-item">
+                                    <div class="meta-label">Type</div>
+                                    <div class="meta-value">Web application</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Database</div>
+                                    <div class="meta-value">MySQL</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Frontend</div>
+                                    <div class="meta-value">HTML, CSS, JS</div>
+                                </li>
+                                <li class="meta-item">
+                                    <div class="meta-label">Backend</div>
+                                    <div class="meta-value">PHP, CodeIgniter 4</div>
+                                </li>
+                            </ul>
+                            <div class="info-buttons-container">
+                                <a class="info-button" href="https://github.com/David-Citron/socialni-sit" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </aside>
+
+                        <div class="showcase media-small-w100 reveal">
+                            <div class="window">
+                                <div class="window-header">
+                                    <span class="window-header-dot window-header-dot-red" aria-hidden="true"></span>
+                                    <span class="window-header-dot window-header-dot-yellow" aria-hidden="true"></span>
+                                    <span class="window-header-dot window-header-dot-green" aria-hidden="true"></span>
+                                    <span class="window-header-title">ArchShare - screenshot</span>
+                                </div>
+                                <div class="window-content">
+                                    <img alt="ArchShare screenshot" src="img/ArchShare.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music section -->
+        <section id="music">
+            <div class="container">
+                <header class="reveal">
+                    <div class="section-label">Music</div>
+                    <h2>Beats, guitar,<br>and everything<br>in between.</h2>
+                </header>
+
+                <div class="layout media-small-grid-single-column">
+                    <div class="info media-small-w100">
+                        <div class="info-part reveal">
+                            <h3>The sound</h3>
+                            <p>
+                                My primary genre is drill — dark 808s, sliding bass, and aggressive hi-hat patterns. But I don't stop there. I layer real guitar recordings on top: a PRS Standard 24 for the aggressive stuff, a Hello Kitty Fender Squier for when things get weird.
+                            </p>
+                        </div>
+                        <div class="info-part reveal">
+                            <h3>Gear</h3>
+                            <ul class="list">
+                                <li class="item">
+                                    <div class="item-dot" aria-hidden="true"></div>
+                                    <div class="item-content">
+                                        <span class="item-title">PRS SE Standard 24</span>
+                                        <span class="item-description">Electric guitar</span>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="item-dot" aria-hidden="true"></div>
+                                    <div class="item-content">
+                                        <span class="item-title">Fender Squier x Hello Kitty Stratocaster</span>
+                                        <span class="item-description">Electric guitar</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="info-part reveal">
+                            <h3>Games &amp; Music</h3>
+                            <p>
+                                Every game I release comes with an original soundtrack I composed myself. The music and the game are built in parallel — sound design and gameplay evolve together from day one.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="audio-player media-small-w100 reveal">
+                        <div class="audio-player-header">
+                            <div class="audio-player-dot" aria-hidden="true"></div>
+                            <span class="audio-player-title">David Žižlavský - Audio</span>
+                        </div>
+                        <ol class="audio-player-list">
+                            <li class="audio-player-item">
+                                <button type="button" class="audio-player-button" id="audio-corridor-button" aria-label="Play: Corridor 7">
+                                    <span class="audio-player-item-num">01</span>
+                                    <span class="audio-player-info">
+                                        <span class="audio-player-info-title">Corridor 7</span>
+                                        <span class="audio-player-info-description">Experimental Drill</span>
+                                    </span>
+                                    <span class="audio-player-length" id="audio-corridor-length">1:20</span>
+                                </button>
+                            </li>
+                            <li class="audio-player-item">
+                                <button type="button" class="audio-player-button" id="audio-final-sen-button" aria-label="Play: Final Sen">
+                                    <span class="audio-player-item-num">02</span>
+                                    <span class="audio-player-info">
+                                        <span class="audio-player-info-title">Final Sen</span>
+                                        <span class="audio-player-info-description">Mashup</span>
+                                    </span>
+                                    <span class="audio-player-length" id="audio-final-sen-length">1:55</span>
+                                </button>
+                            </li>
+                            <li class="audio-player-item">
+                                <button type="button" class="audio-player-button" id="audio-chained-button" aria-label="Play: Chained">
+                                    <span class="audio-player-item-num">03</span>
+                                    <span class="audio-player-info">
+                                        <span class="audio-player-info-title">Chained</span>
+                                        <span class="audio-player-info-description">Game Soundtrack</span>
+                                    </span>
+                                    <span class="audio-player-length" id="audio-chained-length">3:00</span>
+                                </button>
+                            </li>
+                        </ol>
+                        <div class="audio-player-controls-container">
+                            <audio id="audio-player-element"></audio>
+                            <div class="audio-player-controls">
+                                <button type="button" class="audio-player-controls-button" aria-label="Fast backward" id="audio-button-fast-backward"><i class="fa-solid fa-backward-fast" aria-hidden="true"></i></button>
+                                <button type="button" class="audio-player-controls-button audio-player-controls-main-button" aria-label="Play/Pause" id="audio-button-play"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+                                <button type="button" class="audio-player-controls-button" aria-label="Fast forward" id="audio-button-fast-forward"><i class="fa-solid fa-forward-fast" aria-hidden="true"></i></button>
+                            </div>
+                            <div class="audio-player-progress">
+                                <div class="audio-player-progress-bar-wrap" id="audio-progress-container">
+                                    <div class="audio-player-progress-bar-fill" id="audio-progress"></div>
+                                </div>
+                                <div class="audio-player-progress-times">
+                                    <span id="audio-time-current">0:01</span>
+                                    <span id="audio-time-total">1:20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="experience">
+            <div class="container">
+                <header class="reveal">
+                    <div class="section-label">Experience</div>
+                    <h2>Education<br>and practice.</h2>
+                </header>
+                <div class="experience-container reveal">
+                    <div class="experience-item">
+                        <div class="experience-year">2018</div>
+                        <div class="experience-divider"></div>
+                        <div class="experience-content reveal">
+                            <p class="media-xsmall-text-left">
+                                I became interested in game development and web development. My first projects were simple mobile games made with the <strong>Pocket Code</strong> platform. Later that year, I started experimenting with Unity.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-year">2021</div>
+                        <div class="experience-divider"></div>
+                        <div class="experience-content reveal">
+                            <p class="media-xsmall-text-left">
+                                My IT journey became more structured when I began studying information technology at <strong>Obchodní akademie Uherské Hradiště</strong>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-year">2025</div>
+                        <div class="experience-divider"></div>
+                        <div class="experience-content reveal">
+                            <p class="media-xsmall-text-left">
+                                I joined <strong>Euregnia</strong> as a software developer and began my bachelor's degree at the <strong>Faculty of Information Technology, Brno University of Technology</strong> in Brno.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="container">
+                <header class="reveal">
+                    <div class="section-label">Contact</div>
+                    <h2>Get in touch.</h2>
+                </header>
+                <div class="inner-container">
+                    <p class="reveal">
+                        If you would like to work with me, collaborate on a project, or just get in touch, feel free to contact me through any of the links below.
+                    </p>
+                    <nav class="reveal">
+                        <ul>
+                            <li>
+                                <a href="https://www.linkedin.com/in/david-žižlavský-827316381/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/DavidZizlavsky" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://davidcitron.itch.io" target="_blank" rel="noopener noreferrer" aria-label="Itch.io"><i class="fa-brands fa-itch-io" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div>© 2026 <span class="color-highlight">David Žižlavský</span></div>
+        <div>Brno · Czech Republic</div>
+    </footer>
+</body>
+</html>
