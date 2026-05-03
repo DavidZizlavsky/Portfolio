@@ -13,7 +13,6 @@
     --border: rgba(255,255,255,0.07);
     --accent: #00e5c0;
     --accent2: #0090ff;
-    --accent3: #ff4d6d;
     --text: #e8eaf0;
     --muted: #6b7290;
     --font-display: 'Syne', sans-serif;
@@ -51,6 +50,24 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+noscript {
+    position: fixed;
+    z-index: 99999999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-darkest);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .container {
