@@ -78,7 +78,7 @@ class AudioController {
         this.elementTimeTotal = elementTimeTotal;
         this.audioTrackArray = audioTrackArray;
         this.isPlaying = false;
-        this.currentTrackIndex = null;
+        this.currentTrackIndex = 0;
     }
 }
 
@@ -257,7 +257,11 @@ function togglePlay(audioController) {
     }
 
     if (audioController.currentTrackIndex === null) {
-        console.warn("No audio track selected!");
+        if (audioController.audioTrackArray.at(0) !== null) {
+            switchTrack(audioController, 0);
+        } else {
+            console.warn("No audio track to play!");
+        }
         return;
     }
     
