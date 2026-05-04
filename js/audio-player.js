@@ -78,7 +78,7 @@ class AudioController {
         this.elementTimeTotal = elementTimeTotal;
         this.audioTrackArray = audioTrackArray;
         this.isPlaying = false;
-        this.currentTrackIndex = 0;
+        this.currentTrackIndex = null;
     }
 }
 
@@ -175,7 +175,11 @@ function nextTrack(audioController) {
     }
 
     if (audioController.currentTrackIndex === null) {
-        console.warn("No audio track loaded yet!");
+        if (audioController.audioTrackArray.at(0) !== null) {
+            switchTrack(audioController, 0);
+        } else {
+            console.warn("No audio track to play!");
+        }
         return;
     }
 
@@ -192,7 +196,11 @@ function previousTrack(audioController) {
     }
 
     if (audioController.currentTrackIndex === null) {
-        console.warn("No audio track loaded yet!");
+        if (audioController.audioTrackArray.at(0) !== null) {
+            switchTrack(audioController, 0);
+        } else {
+            console.warn("No audio track to play!");
+        }
         return;
     }
 
